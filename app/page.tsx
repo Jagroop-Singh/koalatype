@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import {Fragment, useState} from 'react';
+import {Fragment, useState, useRef} from 'react';
 import {Dialog, Disclosure, Popover, Transition} from '@headlessui/react'
 import{
   ArrowPathIcon,
@@ -25,6 +25,7 @@ const quotes = [
 ]
 
 var activeindex = 0;
+var finalindex = quotes[1].content.length;
 var activeword = null;
 
 function classNames(...classes){
@@ -59,11 +60,31 @@ const validateinput = (c) => {
 const keyboardinput = (e) => {
   e.preventDefault();
   var Exp = /^([0-9]|[a-z])+([0-9a-z]+)$/i;
-  if (!e.key.match(Exp)){
+  if (!e.key.match(Exp) && activeindex < finalindex){
     console.log(activeindex);
     validateinput(e.key);
-  }else if(e.key === "Backspace"){
+  }else if(e.key === "Backspace" && activeindex!=0){
     activeindex--;
+    let a = document.querySelector("#letter");
+    let b = activeindex;
+    while(b>0){
+      a = a.nextElementSibling;
+      b--;
+    }
+    a.classList.remove("text-red-400");   
+    a.classList.remove("text-green-400");
+  }
+  var el = document.getElementById('typingtest');
+  var range = document.createRange()
+  var sel = window.getSelection();
+  range.setStart(el.childNodes[0],activeindex)
+  range.collapse(true)
+  sel.removeAllRanges()
+  sel.addRange(range)
+  if (activeindex >= finalindex){
+    console.log("you win");
+    let a = document.querySelector("#typingtest");
+    a.removeAttribute('contentEditable');
   }
 }
 
