@@ -1,4 +1,6 @@
+'use client';
 import Image from "next/image";
+import Logo from "../public/logo.svg";
 import {Fragment, useState, useRef} from 'react';
 import {Dialog, Disclosure, Popover, Transition} from '@headlessui/react'
 import{
@@ -31,7 +33,10 @@ return(
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <Image
+                src={Logo}
+                alt='KoalaType Logo'
+                />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -104,11 +109,11 @@ return(
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+            <Image
+                src={Logo}
+                alt='KoalaType Logo'
+                className="w-20"
+                />
             </a>
             <button
               type="button"

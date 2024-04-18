@@ -94,18 +94,19 @@ const keyboardinput = (e) => {
     setWPM((typed_entries/5)/(((Date.now()-time_start)/1000)/60) - uncorrected_errors );
 }
     return (
-    <>
-  <div contentEditable="true" id='typingtest' className="flex items-center bg-white rounded-md justify-center" onKeyDown={keyboardinput}>
-    <div id='words' className='inline-block rounded-md text-gray-900 w-11/12'>
+    <div className="flex justify-center flex-col place-items-center  bg-white">
+  <div contentEditable="true" id='typingtest' className="p-5 mt-5 w-11/12 rounded-lg border-2 border-slate-400" onKeyDown={keyboardinput}>
+    <div id='words' className=''>
     {quotes[1].content.split('').map((letter, index)=>(
         <div key={index} id='letter' className='inline'>{letter}</div>
           ))}
     </div>
   </div>
   
-  <div className="flex">
+  <div className="flex justify-center place-items-center">
         {wpm}
   </div>
-  </>
+
+  </div>
   )
 }
