@@ -12,6 +12,7 @@ datasource db {
 
 model Quote {
  id Int @id@default(autoincrement())
- content String
- author String
+ title    String
+ content  String
+ author   String
 }
